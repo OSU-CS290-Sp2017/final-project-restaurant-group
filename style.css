@@ -5,10 +5,20 @@
   font-weight: 100;
   background-color: #319df6;
   color: #fff;
+  font-family: 'Lobster';
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
 
 a:hover{
   color: #319df6;
+}
+
+body{
+  font-family: 'Arbutus Slab', serif;
 }
 
 .navbar {
