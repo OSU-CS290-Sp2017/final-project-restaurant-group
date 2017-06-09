@@ -3,8 +3,20 @@ var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
+//MongoDB implementation
+var bodyParser = require ('body-parser');
+var MongoClient = require('mongodb').MongoClient;
 
-//var twitData = require('./twitData');
+var mongoHost = "classmongo.engr.oregonstate.edu";
+var mongoPort = process.env.MONGO_PORT || 27017;
+var mongoUser = cs290_halverch;
+var mongoPassword = cs290_halverch;
+var mongoDBName = cs290_halverch;
+var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword +
+  '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
+var mongoDB;
+
+var resData = require('./resData'); //fix this during mongoDB update
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -12,6 +24,7 @@ var port = process.env.PORT || 3000;
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
 
 //about.html serving
 app.get('/about.html', function (req, res) {
@@ -20,6 +33,11 @@ app.get('/about.html', function (req, res) {
 
 //index.html serving
 app.get('/index.html', function (req, res) {
+	res.status(200).sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+//"normal" index serving
+app.get('/', function (req, res) {
 	res.status(200).sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -38,33 +56,51 @@ app.get('/style.css', function (req, res) {
 	res.status(200).sendFile(path.join(__dirname, 'public', 'style.css'));
 });
 
-
-/*
-//index creation
-app.get('/', function (req, res, next){
-	var templateArgs = {
-		twits: twitData,
-		doCreate: true
-	}
-	res.render('twitPage', templateArgs);
-});
-
-//individual twits page
-app.get('/twits/:twitNum', function (req, res, next){
-	var index = req.params.twitNum;
-	var indexTwit = twitData[index];
-	if (indexTwit){
-		var templateArgs = {
-			twits:[indexTwit],
-			doCreate: false
+//reservations page serving
+app.get('/reservations', function (req, res, next){
+	//collect reservations from DB
+	var collection = mongoDB.collection('reservations');
+	collection.find({}).toArray(function (err, resData){
+		//if there's an error, report that
+		if (err){
+			res.status(500).send("Error finding reservations");
 		}
-		res.render('twitPage', templateArgs);
-	}
-	else {
-		next();
+		//otherwise get and print the reservations
+		else{
+			var templateArgs = {
+				reservations: resData,
+				mod: true
+			}
+			res.render('reservationsPage', templateArgs);
+		}
+	});
+});
+
+//individual reservations page serving
+app.get('/reservations/:resName', function (req, res, next){
+	//collect a given reservation from DB
+	var index = req.params.resNum;
+	var collection = mongoDB.collection('reservations');
+	collection.find({resid: resName}).toArray(function (err, resData) {
+		//if there's an error, report that
+		if (err){
+			console.log("error finding reservation (" + req.params.resNum + ") from database", err);
+			res.status(500).send("Error finding reservation from database");
+		}
+		//if there aren't any reservations, don't do anything
+		else if (resData.length < 1){
+			next();
+		}
+		else{
+			var thisData = resData[0];
+			var templateArgs = {
+				reservations: [indexRes],
+				mod : false
+			}
+			res.render('reservations', templateArgs);
+		}
 	}
 });
-*/
 
 //404 handling
 app.get('*', function(req, res){
@@ -72,6 +108,12 @@ app.get('*', function(req, res){
 });
 
 //port opening
-app.listen(port, function (){
-	console.log("server listening on port", port);
+MongoClient.connect(mongoURL, function (err, db){
+	if (err){
+		throw err;
+	}
+	mongoDB = db;
+	app.listen(port, function (){
+		console.log("server listening on port", port);
+	});
 });
