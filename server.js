@@ -9,14 +9,14 @@ var MongoClient = require('mongodb').MongoClient;
 
 var mongoHost = "classmongo.engr.oregonstate.edu";
 var mongoPort = process.env.MONGO_PORT || 27017;
-var mongoUser = cs290_halverch;
-var mongoPassword = cs290_halverch;
-var mongoDBName = cs290_halverch;
+var mongoUser = "cs290_halverch";
+var mongoPassword = "cs290_halverch";
+var mongoDBName = "cs290_halverch";
 var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword +
   '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
 var mongoDB;
 
-var resData = require('./resData'); //fix this during mongoDB update
+//var resData = require('./resData'); //fix this during mongoDB update
 var app = express();
 var port = process.env.PORT || 3000;
 
@@ -57,7 +57,7 @@ app.get('/style.css', function (req, res) {
 });
 
 //reservations page serving
-app.get('/reservations', function (req, res, next){
+app.get('/reservations.html', function (req, res, next){
 	//collect reservations from DB
 	var collection = mongoDB.collection('reservations');
 	collection.find({}).toArray(function (err, resData){
@@ -77,9 +77,9 @@ app.get('/reservations', function (req, res, next){
 });
 
 //individual reservations page serving
-app.get('/reservations/:resName', function (req, res, next){
+app.get('/reservations.html/:resName', function (req, res, next){
 	//collect a given reservation from DB
-	var index = req.params.resNum;
+	var index = req.params.resName;
 	var collection = mongoDB.collection('reservations');
 	collection.find({resid: resName}).toArray(function (err, resData) {
 		//if there's an error, report that
@@ -91,14 +91,43 @@ app.get('/reservations/:resName', function (req, res, next){
 		else if (resData.length < 1){
 			next();
 		}
+		
 		else{
 			var thisData = resData[0];
 			var templateArgs = {
-				reservations: [indexRes],
+				reservations: thisData,
 				mod : false
 			}
 			res.render('reservations', templateArgs);
 		}
+	});
+});
+
+//post handling
+app.post('/reservations.html/:resName/addRes', function (req, res, next){
+	//if all of the fields are set up, go ahead
+	if (req.body && req.body.name && req.body.number && req.body.time){
+		var collection = mongoDB.collection('reservations');
+		var newRes = {
+			name: req.body.name,
+			number: req.body.number,
+			time: req.body.time
+		}
+		//insert the new reservation & check for errors
+		collection.insertOne(newRes, function(err, result){
+			if (err){
+				console.log("Error inserting reservation into database: ", err);
+				res.status(500).send("Error inserting reservation into database: ", err);
+			}
+			else{
+				res.status(200).send();
+			}
+		});
+		
+	}
+	//if a field is missing, report that
+	else {
+		res.status(400).send("Reservation is missing one or more fields.");
 	}
 });
 
