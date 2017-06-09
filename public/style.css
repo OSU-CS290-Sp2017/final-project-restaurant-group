@@ -1,25 +1,11 @@
 .site-title {
   margin: 0px;
-  padding: 0px;
+  padding: 10px 20px;
   font-size: 30px;
   font-weight: 100;
-  width: 100%;
   background-color: #319df6;
   color: #fff;
   font-family: 'Lobster';
-}
-
-.navlink a{
-  text-decoration: none;
-  color: black;
-}
-
-a:hover{
-  color: #319df6;
-}
-
-body{
-  font-family: 'Arbutus Slab', serif;
 }
 
 .navbar {
@@ -35,6 +21,19 @@ body{
 
 .navitem {
   display: inline-block;
+}
+
+a {
+  color: black;
+}
+
+a:hover,
+a:focus {
+  color: #319df6;
+}
+
+body{
+  font-family: 'Arbutus Slab', serif;
 }
 
 .description{
@@ -121,46 +120,29 @@ body{
   background: -webkit-linear-gradient(-45deg, #ffff88 81%,#ffff88 82%,#ffff88 82%,#ffffc6 100%); /* Chrome10+,Safari5.1+ */
 }
 
-/*#create-box-button{
-  background-color: green;
-  font-size:50px;
-  display: inline-block;
+#create-box-button {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  border-radius: 50px;
-  color: white;
-}*/
-
-/*#create-box-button:hover{
-    background-color: rgba(69, 156, 232, 1);
-    font-size:70px;
-    border-radius: 70px;
-}*/
-
-#create-box-button {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
   height: 60px;
   width: 60px;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   font-size: 36px;
   background-color: green;
   color: #fff;
   cursor: pointer;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.50);
 }
 
 #create-box-button:hover,
 #create-box-button:focus {
-  right: 27px;
-  bottom: 27px;
-  height: 66px;
-  width: 66px;
-  border-radius: 33px;
-  font-size: 40px;
+  right: 37px;
+  bottom: 37px;
+  height: 76px;
+  width: 76px;
+  border-radius: 80px;
+  font-size: 60px;
   background-color: #319df6;
 }
 
@@ -210,6 +192,7 @@ body{
 .header h5 {
   margin: 0;
   font-size: 28px;
+  color: green;
 }
 
 .close-button {
@@ -221,6 +204,10 @@ body{
   background: none;
   padding: 0;
   cursor: pointer;
+}
+
+.close-button:hover{
+  color: #319df6;
 }
 
 .modal-body {
@@ -271,6 +258,7 @@ body{
 
 .modal-footer .cancel-button:hover {
   background-color: #eee;
+  color: #319df6;
 }
 
 .modal-footer .accept-button {
@@ -282,12 +270,6 @@ body{
   background-color: #087dde;
 }
 
-
-<<<<<<< HEAD
-.error h2{
-  text-align: center;
-=======
-
 .error h2{
   text-align: center;
   font-size: 75px;
@@ -296,5 +278,4 @@ body{
 .error h3{
   text-align: center;
   font-size: 25px;
->>>>>>> Thu
 }
