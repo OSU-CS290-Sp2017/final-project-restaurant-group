@@ -9,7 +9,11 @@
   font-family: 'Lobster';
 }
 
+<<<<<<< HEAD
 a{
+=======
+.navlink a{
+>>>>>>> 91bf0c34a3f01d69a169a04425b67f6e45f71417
   text-decoration: none;
   color: black;
 }
@@ -110,8 +114,14 @@ body{
 }
 
 #create-twit-button{
+<<<<<<< HEAD
   background-color: blue;
   font-size:50px;
+=======
+  background-color: red;
+  font-size:50px;
+  font-family: 'Roboto', sans-serif;
+>>>>>>> 91bf0c34a3f01d69a169a04425b67f6e45f71417
   display: inline-block;
   position: fixed;
   right: 20px;
@@ -122,6 +132,12 @@ body{
 
 #create-twit-button:hover{
     background-color: rgba(69, 156, 232, 1);
+<<<<<<< HEAD
     font-size:70px;
     border-radius: 70px;
+=======
+    font-size:100px;
+    border-radius: 70px;
+    font-family: 'Roboto', sans-serif;
+>>>>>>> 91bf0c34a3f01d69a169a04425b67f6e45f71417
 }
