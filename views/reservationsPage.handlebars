@@ -1,1 +1,15 @@
 {{! For reservation page}}
+
+{{>header}}
+
+	<main class = "reserve-container">
+
+		{{#each reservations}}
+			{{> reservation}}
+		{{/each}}
+
+	</main>
+
+	{{#if mod}}
+		{{> createTwitModal}}
+	{{/if}}
