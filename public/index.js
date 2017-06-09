@@ -33,7 +33,10 @@ myAccept.addEventListener('click',function(){
 function createNewBox(){
   var newReserveContainer=document.getElementsByClassName('reserve-container')[0];
   var newArticle = document.createElement('article');
-  var newDiv = document.createElement('div');
+  var newDiv1 = document.createElement('div');
+  var newDiv2 = document.createElement('div');
+  var newI = document.createElement('i');
+  var newDiv3 = document.createElement('div');
   var newNamePara = document.createElement('p');
   var newName = document.createTextNode(myName.value);
   var newPhonePara = document.createElement('p');
@@ -42,17 +45,25 @@ function createNewBox(){
   var newTime = document.createTextNode(myTime.value);
 
   newArticle.classList.add('reserve-box');
-  newDiv.classList.add('box-content');
+  newDiv1.classList.add('box-content');
+  newDiv2.classList.add('pin');
+  newI.classList.add('fa','fa-map-pin');
+  newDiv2.appendChild(newI);
+  newDiv1.appendChild(newDiv2);
+
+  newDiv3.classList.add('box-text');
   newNamePara.classList.add('name');
   newNamePara.appendChild(newName);
   newPhonePara.classList.add('number');
   newPhonePara.appendChild(newPhone);
   newTimePara.classList.add('time');
   newTimePara.appendChild(newTime);
-  newDiv.appendChild(newNamePara);
-  newDiv.appendChild(newPhonePara);
-  newDiv.appendChild(newTimePara);
-  newArticle.appendChild(newDiv);
+  newDiv3.appendChild(newNamePara);
+  newDiv3.appendChild(newPhonePara);
+  newDiv3.appendChild(newTimePara);
+  newDiv1.appendChild(newDiv3);
+  newArticle.appendChild(newDiv1);
+
   newReserveContainer.classList.add('reserve-container');
   newReserveContainer.appendChild(newArticle);
 
