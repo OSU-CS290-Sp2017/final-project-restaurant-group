@@ -19,44 +19,13 @@ var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword +
   '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
 var mongoDB;
 
+console.log("mongoDB url: ", mongoURL);
 //var resData = require('./resData'); //fix this during mongoDB update
-
-
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-//about.html serving
-app.get('/about.html', function (req, res) {
-	res.status(200).sendFile(path.join(__dirname, 'public', 'about.html'));
-});
-
-//index.html serving
-app.get('/index.html', function (req, res) {
-	res.status(200).sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-//"normal" index serving
-app.get('/', function (req, res) {
-	res.status(200).sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-//index.js serving
-app.get('/index.js', function (req, res) {
-	res.status(200).sendFile(path.join(__dirname, 'public', 'index.js'));
-});
-
-//menu.html serving
-app.get('/menu.html', function (req, res) {
-	res.status(200).sendFile(path.join(__dirname, 'public', 'menu.html'));
-});
-
-//style.css serving
-app.get('/style.css', function (req, res) {
-	res.status(200).sendFile(path.join(__dirname, 'public', 'style.css'));
-});
 
 //reservations page serving
 app.get('/reservations.html', function (req, res, next){
@@ -131,6 +100,37 @@ app.post('/reservations.html/:resName/addRes', function (req, res, next){
 	else {
 		res.status(400).send("Reservation is missing one or more fields.");
 	}
+});
+app.use(express.static(path.join(__dirname, 'public')));
+
+//about.html serving
+app.get('/about.html', function (req, res) {
+	res.status(200).sendFile(path.join(__dirname, 'public', 'about.html'));
+});
+
+//index.html serving
+app.get('/index.html', function (req, res) {
+	res.status(200).sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+//"normal" index serving
+app.get('/', function (req, res) {
+	res.status(200).sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+//index.js serving
+app.get('/index.js', function (req, res) {
+	res.status(200).sendFile(path.join(__dirname, 'public', 'index.js'));
+});
+
+//menu.html serving
+app.get('/menu.html', function (req, res) {
+	res.status(200).sendFile(path.join(__dirname, 'public', 'menu.html'));
+});
+
+//style.css serving
+app.get('/style.css', function (req, res) {
+	res.status(200).sendFile(path.join(__dirname, 'public', 'style.css'));
 });
 
 //404 handling
