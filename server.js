@@ -3,9 +3,12 @@ var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
-//MongoDB implementation
+
 var bodyParser = require ('body-parser');
 var MongoClient = require('mongodb').MongoClient;
+
+var app = express();
+var port = process.env.PORT || 3000;
 
 var mongoHost = "classmongo.engr.oregonstate.edu";
 var mongoPort = process.env.MONGO_PORT || 27017;
@@ -17,8 +20,7 @@ var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword +
 var mongoDB;
 
 //var resData = require('./resData'); //fix this during mongoDB update
-var app = express();
-var port = process.env.PORT || 3000;
+
 
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
