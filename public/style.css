@@ -1,18 +1,19 @@
 .site-title {
   margin: 0px;
-  padding: 10px;
-  font-size: 30px;
+  padding: 0px;
+  font-size: 55px;
   font-weight: 100;
-  width:135%;
-  background-color: #319df6;
+  width:100%;
+  background-color: #33ccff;
   color: #fff;
   font-family: 'Lobster';
 }
 
 .navbar {
-  background-color: #fff;
+  background-color: #d9d9d9;
   font-size: 18px;
   line-height: 22px;
+  width: 100%;
 }
 
 .navlist {
@@ -32,7 +33,7 @@ a {
 
 a:hover,
 a:focus {
-  color: #319df6;
+  color: #ff6666;
 }
 
 a:focus{
@@ -45,32 +46,114 @@ body{
   padding: 0px;
 }
 
-.description{
-  display: inline-block;
-  flex: wrap;
-  width: 1000px;
-  margin-left: 10px;
+h1{
+  padding-left: 5px;
 }
+
+.bg{
+    /*position: fixed;
+    left: 0px;
+    top: 0px;*/
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background-image: url('http://wac.450f.edgecastcdn.net/80450F/wobm.com/files/2014/01/Betty-White-630x354.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
+/* Retina display */
+@media screen and (min-width: 1024px){
+    .responsive-image{
+        background-image: url('../img/retina.jpg');
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 980px) and (max-width: 1024px){
+    .responsive-image{
+        background-image: url('../img/desktop.jpg');
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 760px) and (max-width: 980px){
+    .responsive-image{
+        background-image: url('../img/tablet.jpg');
+    }
+}
+
+/* Mobile HD */
+@media screen and (min-width: 350px) and (max-width: 760px){
+    .responsive-image{
+        background-image: url('../img/mobile-hd.jpg');
+    }
+}
+
+/* Mobile LD */
+@media screen and (max-width: 350px){
+    .responsive-image{
+        background-image: url('../img/mobile-ld.jpg');
+    }
+}
+
+.title-page{
+  margin:2px;
+  margin-top: 0px;
+  padding-top:10px;
+}
+
+.description{
+position: absolute;
+/*top: 50%;
+left: 50%;*/
+text-align: left;
+color: white;
+font-weight: bold;
+padding: 30px;
+margin:10px;
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -moz-flex;
+display: -webkit-flex;
+display: flex;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-justify-content: left;
+justify-content: left;
+}
+
+/*.description{
+  display: inline-block;
+  position: relative;
+
+  flex: wrap;
+  width: 100%;
+  margin-left: 10px;
+}*/
 
 .location-content{
   display: inline-block;
   margin: 10px;
 }
 
-.info{
-
-}
-
 .pic-container{
   padding-top: 5px;
-
 }
 
 .menu-title{
   font-family: 'Lobster';
-  font-size: 25px;
+  font-size: 45px;
   font-weight: 700;
-  color: #319df6;
+  color: #33ccff;
   text-align: center;
 }
 
@@ -78,32 +161,34 @@ body{
   border:1px solid black;
   padding:20px;
   margin:20px;
+  overflow-y: scroll;
+  background-color: #e5ffcc;
 }
 
 .menu-section{
-  font-size: 17px;
+  font-size: 35px;
   font-weight: bolder;
   text-align:left;
-  color:red;
+  color:#ff6666;
 }
 
 .item-box{
   padding-left:5px;
-  margin-left:2px;
+  margin-left:5px;
 }
 
 .menu-item{
-  font-size: 13px;
+  font-size: 25px;
   font-weight: bold;
 }
 
 .item-description{
-  font-size: 12px;
+  font-size: 17px;
 }
 
 .price{
   font-style: italic;
-  font-size: 13px;
+  font-size: 25px;
   align-items: flex-end;
 }
 
@@ -111,7 +196,9 @@ body{
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-  margin-left: 10%;
+  background-color: #cc9966;
+  justify-content: center;
+  height:100%;
 }
 
 .reserve-box{
@@ -157,7 +244,7 @@ body{
   border: none;
   border-radius: 50px;
   font-size: 36px;
-  background-color: green;
+  background-color: #ff6666;
   color: #fff;
   cursor: pointer;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.50);
@@ -171,7 +258,7 @@ body{
   width: 76px;
   border-radius: 80px;
   font-size: 60px;
-  background-color: #319df6;
+  background-color: #33ccff;
 }
 
 #create-box-button:focus {
@@ -235,7 +322,7 @@ body{
 }
 
 .close-button:hover{
-  color: #319df6;
+  color: #33ccff;
 }
 
 .modal-body {
@@ -296,6 +383,37 @@ body{
 
 .modal-footer .accept-button:hover {
   background-color: #087dde;
+}
+
+.atitle-page{
+  color: #33ccff;
+  margin:2px;
+  margin-top: 0px;
+  padding-top:10px;
+}
+
+.apic-container{
+  float: right;
+  margin:5px;
+  padding:10px;
+}
+
+.info{
+  margin:5px;
+  padding:10px;
+}
+
+.about-container{
+  background-color:#e5ffcc;
+  height:100%;
+}
+
+.info a{
+  color: #33ccff;
+}
+
+.info a:hover{
+  color: #ff6666;
 }
 
 .error h2{
