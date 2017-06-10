@@ -47,8 +47,9 @@ function createNewRes(){
 		}
 		
 		else {
+			/*
 			//create the HTML using handlebars
-			var reservationTemplate = handlebars.templates.reservation;
+			var reservationTemplate = Handlebars.templates.reservation;
 			var templateArgs = {
 				name: resName,
 				number: resNum,
@@ -58,6 +59,8 @@ function createNewRes(){
 			//insert the HTML at the end of the list
 			var resContainer = document.querySelector('reserve-container');
 			resContainer.insertAdjacentHTML('beforeend', reservationHTML);
+			*/
+			location.reload(true);
 		}
 	});
 	clear();

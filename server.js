@@ -1,6 +1,6 @@
 //do a bunch of requires to set things up
-var fs = require('fs');
 var path = require('path');
+var fs = require('fs');
 var express = require('express');
 var exphbs = require('express-handlebars');
 
@@ -10,6 +10,7 @@ var MongoClient = require('mongodb').MongoClient;
 var app = express();
 var port = process.env.PORT || 3000;
 
+//set up the database location
 var mongoHost = "classmongo.engr.oregonstate.edu";
 var mongoPort = process.env.MONGO_PORT || 27017;
 var mongoUser = "cs290_halverch";
@@ -20,7 +21,6 @@ var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword +
 var mongoDB;
 
 console.log("mongoDB url: ", mongoURL);
-//var resData = require('./resData'); //fix this during mongoDB update
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -101,7 +101,7 @@ app.post('/reservations.html/:resName/addRes', function (req, res, next){
 		res.status(400).send("Reservation is missing one or more fields.");
 	}
 });
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 //about.html serving
 app.get('/about.html', function (req, res) {
