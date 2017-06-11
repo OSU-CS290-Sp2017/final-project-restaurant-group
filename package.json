@@ -1,3 +1,4 @@
+
 {
   "name": "final-project-restaurant-group",
   "version": "1.0.0",
@@ -13,7 +14,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/OSU-CS290-Sp2017/final-project-restaurant-group.git"
   },
-  "author": "Thu Hoang, Susmita Padalah, Chris Halverson",
+  "author": "Thu Hoang, Hema Susmita Padala, Chris Halverson",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/OSU-CS290-Sp2017/final-project-restaurant-group/issues"
@@ -27,3 +28,4 @@
     "mongodb": "^2.2.28"
   }
 }
+
