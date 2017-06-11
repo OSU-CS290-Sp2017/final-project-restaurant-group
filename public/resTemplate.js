@@ -12,3 +12,4 @@ templates['reservation'] = template({"compiler":[7,">= 4.0.0"],"main":function(c
     + "\n        </p>\n      </div>\n    </div>\n</article>\n";
 },"useData":true});
 })();
+

@@ -1,3 +1,5 @@
+
+
 var myModal=document.getElementById('modal-backdrop');
 var myButton=document.getElementById('create-box-button');
 var myBoxModal=document.getElementById('create-modal');
@@ -45,6 +47,7 @@ function createNewRes(){
 		}
 		
 		else {
+			/*
 			//create the HTML using handlebars
 			var reservationTemplate = Handlebars.templates.reservation;
 			var templateArgs = {
@@ -56,6 +59,8 @@ function createNewRes(){
 			//insert the HTML at the end of the list
 			var resContainer = document.querySelector('reserve-container');
 			resContainer.insertAdjacentHTML('beforeend', reservationHTML);
+			*/
+			location.reload(true);
 		}
 	});
 	clear();
