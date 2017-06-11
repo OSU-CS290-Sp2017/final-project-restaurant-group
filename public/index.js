@@ -26,50 +26,67 @@ myAccept.addEventListener('click',function(){
     alert("All the fields are not filled. Please fill all the fields.");
   }
   else{
-    createNewBox();
+    createNewRes();
   }
 });
 
-function createNewBox(){
-  var newReserveContainer=document.getElementsByClassName('reserve-container')[0];
-  var newArticle = document.createElement('article');
-  var newDiv1 = document.createElement('div');
-  var newDiv2 = document.createElement('div');
-  var newI = document.createElement('i');
-  var newDiv3 = document.createElement('div');
-  var newNamePara = document.createElement('p');
-  var newName = document.createTextNode(myName.value);
-  var newPhonePara = document.createElement('p');
-  var newPhone = document.createTextNode(myPhone.value);
-  var newTimePara = document.createElement('p');
-  var newTime = document.createTextNode(myTime.value);
+//makes a new reservation in the website & calls the store function
+function createNewRes(){
+	//collect the data
+	var resName = myName.value;
+	var resNum = myPhone.value;
+	var resTime = myTime.value;	
+	console.log(resName, resNum, resTime);
+	//call store, maybe getting back an error
+	storeNewRes(resName, resNum, resTime, function (err) {
+		//if there is an error, alert user
+		if (err) {
+			alert("Unable to save reservation. Error code:" + err);
+		}
+		
+		else {
+			//create the HTML using handlebars
+			var reservationTemplate = Handlebars.templates.reservation;
+			var templateArgs = {
+				name: resName,
+				number: resNum,
+				time: resTime
+			};
+			var reservationHTML = reservationTemplate(templateArgs);
+			//insert the HTML at the end of the list
+			var resContainer = document.querySelector('reserve-container');
+			resContainer.insertAdjacentHTML('beforeend', reservationHTML);
+		}
+	});
+	clear();
 
-  newArticle.classList.add('reserve-box');
-  newDiv1.classList.add('box-content');
-  newDiv2.classList.add('pin');
-  newI.classList.add('fa','fa-map-pin');
-  newDiv2.appendChild(newI);
-  newDiv1.appendChild(newDiv2);
-
-  newDiv3.classList.add('box-text');
-  newNamePara.classList.add('name');
-  newNamePara.appendChild(newName);
-  newPhonePara.classList.add('number');
-  newPhonePara.appendChild(newPhone);
-  newTimePara.classList.add('time');
-  newTimePara.appendChild(newTime);
-  newDiv3.appendChild(newNamePara);
-  newDiv3.appendChild(newPhonePara);
-  newDiv3.appendChild(newTimePara);
-  newDiv1.appendChild(newDiv3);
-  newArticle.appendChild(newDiv1);
-
-  newReserveContainer.classList.add('reserve-container');
-  newReserveContainer.appendChild(newArticle);
-
-  clear();
+}
+//this function stores the res in the DB
+function storeNewRes(Name, Num, Time, callback){
+	//set up the request
+	var postURL = "/reservations.html/"+Name+"/addRes";
+	var postRequest = new XMLHttpRequest();
+	postRequest.open('POST', postURL);
+	postRequest.setRequestHeader('Content-Type', 'application/json');
+	//if there's some sort of error, callback the error
+	postRequest.addEventListener('load', function (event) {
+		var error;
+		if (event.target.status !== 200){
+			error = event.target.response;
+		}
+		callback(error);
+	});
+	
+	//set up the content and send it to the server
+	var postBody = {
+		name: Name,
+		number: Num,
+		time: Time
+	};
+	postRequest.send(JSON.stringify(postBody));
 }
 
+//clears and hides the modal
 function clear(){
   myName.value="";
   myPhone.value="";
