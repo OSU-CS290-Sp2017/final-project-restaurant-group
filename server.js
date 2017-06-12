@@ -13,9 +13,9 @@ var port = process.env.PORT || 3000;
 //set up the database location
 var mongoHost = "classmongo.engr.oregonstate.edu";
 var mongoPort = process.env.MONGO_PORT || 27017;
-var mongoUser = "cs290_halverch";
-var mongoPassword = "cs290_halverch";
-var mongoDBName = "cs290_halverch";
+var mongoUser = process.env.MONGO_USER;
+var mongoPassword = process.env.MONGO_PASSWORD;
+var mongoDBName = process.env.MONGO_DB;
 var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword +
   '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
 var mongoDB;
@@ -62,7 +62,7 @@ app.get('/reservations.html/:resName', function (req, res, next){
 		else if (resData.length < 1){
 			next();
 		}
-		
+
 		else{
 			var thisData = resData[0];
 			var templateArgs = {
@@ -94,7 +94,7 @@ app.post('/reservations.html/:resName/addRes', function (req, res, next){
 				res.status(200).send();
 			}
 		});
-		
+
 	}
 	//if a field is missing, report that
 	else {
@@ -134,8 +134,8 @@ app.get('/style.css', function (req, res) {
 });
 
 //404 handling
-app.get('*', function(req, res){
-	res.render('404page');
+app.get('/*', function(req, res){
+	res.status(404).render('404Page');
 });
 
 //port opening
