@@ -35,7 +35,7 @@ function createNewRes(){
 	//collect the data
 	var resName = myName.value;
 	var resNum = myPhone.value;
-	var resTime = myTime.value;	
+	var resTime = myTime.value;
 	console.log(resName, resNum, resTime);
 	//call store, maybe getting back an error
 	storeNewRes(resName, resNum, resTime, function (err) {
@@ -43,10 +43,11 @@ function createNewRes(){
 		if (err) {
 			alert("Unable to save reservation. Error code:" + err);
 		}
-		
+
 		else {
+
 			//create the HTML using handlebars
-			var reservationTemplate = Handlebars.templates.reservation;
+			/*var reservationTemplate = Handlebars.templates.reservation;
 			var templateArgs = {
 				name: resName,
 				number: resNum,
@@ -55,7 +56,9 @@ function createNewRes(){
 			var reservationHTML = reservationTemplate(templateArgs);
 			//insert the HTML at the end of the list
 			var resContainer = document.querySelector('reserve-container');
-			resContainer.insertAdjacentHTML('beforeend', reservationHTML);
+			resContainer.insertAdjacentHTML('beforeend', reservationHTML);*/
+
+			location.reload(true);
 		}
 	});
 	clear();
@@ -76,7 +79,7 @@ function storeNewRes(Name, Num, Time, callback){
 		}
 		callback(error);
 	});
-	
+
 	//set up the content and send it to the server
 	var postBody = {
 		name: Name,
