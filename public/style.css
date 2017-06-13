@@ -26,8 +26,12 @@
   padding:5px;
 }
 
-a {
+.navlink a{
   color: black;
+}
+
+a {
+  color: white;
   text-decoration: none;
 }
 
@@ -147,7 +151,7 @@ justify-content: left;
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-  background-color: #cc9966;
+  background-color: #e5ffcc;
   justify-content: center;
   min-height:100%;
 }
@@ -156,14 +160,14 @@ justify-content: left;
   margin: 25px;
   margin-right:35px;
   width: 250px;
-  min-height:150px;
-  max-height:150px;
-  padding:0px;
+  min-height: 150px;
+  max-height: 150px;
+  padding: 0px;
   display: flex;
   background: #ffff88;
-  border:1px solid #E8E8E8;
-  border-top:60px solid #fdfd86;
-  font-size:22px;
+  border: 1px solid #E8E8E8;
+  border-top: 60px solid #fdfd86;
+  font-size: 22px;
   text-align:center;
   border-bottom-right-radius: 60px 5px;
   background: -moz-linear-gradient(-45deg, #ffff88 81%, #ffff88 82%, #ffff88 82%, #ffffc6 100%); /* FF3.6+ */
