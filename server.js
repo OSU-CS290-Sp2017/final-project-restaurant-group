@@ -52,7 +52,7 @@ app.get('/reservations.html/:resNum', function (req, res, next){
 	//collect a given reservation from DB
 	var index = req.params.resNum;
 	var collection = mongoDB.collection('reservations');
-	collection.find({number: resNum}).toArray(function (err, resData) {
+	collection.find({number: index}).toArray(function (err, resData) {
 		//if there's an error, report that
 		if (err){
 			console.log("error finding reservation (" + req.params.resNum + ") from database", err);
@@ -66,10 +66,10 @@ app.get('/reservations.html/:resNum', function (req, res, next){
 		else{
 			var thisData = resData[0];
 			var templateArgs = {
-				reservations: thisData,
+				reservations: [thisData],
 				mod : false
 			}
-			res.render('reservations', templateArgs);
+			res.render('reservationsPage', templateArgs);
 		}
 	});
 });
