@@ -48,11 +48,11 @@ app.get('/reservations.html', function (req, res, next){
 });
 
 //individual reservations page serving
-app.get('/reservations.html/:resName', function (req, res, next){
+app.get('/reservations.html/:resNum', function (req, res, next){
 	//collect a given reservation from DB
-	var index = req.params.resName;
+	var index = req.params.resNum;
 	var collection = mongoDB.collection('reservations');
-	collection.find({resid: resName}).toArray(function (err, resData) {
+	collection.find({number: resNum}).toArray(function (err, resData) {
 		//if there's an error, report that
 		if (err){
 			console.log("error finding reservation (" + req.params.resNum + ") from database", err);
