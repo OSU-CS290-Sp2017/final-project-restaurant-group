@@ -8,19 +8,23 @@ var myX=document.getElementsByClassName("close-button")[0];
 var myCancel=document.getElementsByClassName("cancel-button")[0];
 var myAccept=document.getElementsByClassName("accept-button")[0];
 
+//make the modal show up
 myButton.addEventListener('click',function(){
   myModal.classList.remove('hidden');
   myBoxModal.classList.remove('hidden');
 });
 
+//clear modal if X is clicked
 myX.addEventListener('click',function(){
   clear();
 });
 
+//clear modal if cancel is clicked
 myCancel.addEventListener('click',function(){
   clear();
 });
 
+//if accept button is clicked & all fields are filled, create the new reservation
 myAccept.addEventListener('click',function(){
   if(myName.value===''||myPhone.value===''||myTime.value===''){
     alert("All the fields are not filled. Please fill all the fields.");
@@ -45,19 +49,7 @@ function createNewRes(){
 		}
 
 		else {
-
-			//create the HTML using handlebars
-			/*var reservationTemplate = Handlebars.templates.reservation;
-			var templateArgs = {
-				name: resName,
-				number: resNum,
-				time: resTime
-			};
-			var reservationHTML = reservationTemplate(templateArgs);
-			//insert the HTML at the end of the list
-			var resContainer = document.querySelector('reserve-container');
-			resContainer.insertAdjacentHTML('beforeend', reservationHTML);*/
-
+			//Code to put the new reservation in wasn't working, but reloading the page makes it show up just fine.
 			location.reload(true);
 		}
 	});
