@@ -7,8 +7,8 @@ var exphbs = require('express-handlebars');
 var bodyParser = require ('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 
-var app = express();
-var port = process.env.PORT || 3000;
+//var app = express();
+//var port = process.env.PORT || 3000;
 
 //set up the database location
 var mongoHost = "classmongo.engr.oregonstate.edu";
